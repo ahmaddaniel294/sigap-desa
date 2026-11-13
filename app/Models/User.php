@@ -47,8 +47,18 @@ class User extends Authenticatable
         return $this->hasMany(Complaint::class);
     }
 
+    public function assignedComplaints()
+    {
+        return $this->hasMany(Complaint::class, 'technician_id');
+    }
+
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    public function isTechnician(): bool
+    {
+        return $this->role === 'teknisi';
     }
 }

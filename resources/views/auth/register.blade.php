@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar Warga — SIGAP Desa')
+@section('title', 'Daftar Pelanggan — LifeCare')
+@section('body_class', 'lifecare-auth')
 
 @section('content')
 <div class="container">
   <div class="auth-shell card-flat p-4 p-md-5">
-    <h3 class="section-title mb-1">Daftar sebagai Warga</h3>
-    <p class="text-muted mb-4">Buat akun untuk mulai melaporkan keluhan di lingkungan Anda.</p>
+    <h3 class="section-title mb-1">Daftar sebagai Pelanggan</h3>
+    <p class="text-muted mb-4">Buat akun LifeCare untuk mengirim dan memantau pengaduan internet Lifemedia.</p>
     <form method="POST" action="{{ route('register') }}">
       @csrf
       <div class="mb-3">
@@ -20,8 +21,8 @@
         @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
       </div>
       <div class="mb-3">
-        <label class="form-label">Dusun / Alamat</label>
-        <input type="text" name="dusun" class="form-control" placeholder="Contoh: Dusun Melati" value="{{ old('dusun') }}">
+        <label class="form-label">Alamat pemasangan Lifemedia</label>
+        <input type="text" name="dusun" class="form-control" placeholder="Masukkan alamat pemasangan internet" value="{{ old('dusun') }}">
       </div>
       <div class="mb-3">
         <label class="form-label">Kata Sandi</label>

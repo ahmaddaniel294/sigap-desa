@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '403 — SIGAP Desa')
+@section('title', '403 — LifeCare')
 
 @section('content')
 <div class="container py-5 text-center">

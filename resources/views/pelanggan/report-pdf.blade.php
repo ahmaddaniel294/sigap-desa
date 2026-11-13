@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Pengaduan Warga SIGAP Desa</title>
+    <title>Laporan Pengaduan Pelanggan LifeCare</title>
     <style>
         body { font-family: DejaVu Sans, sans-serif; color: #17212d; font-size: 12px; }
         h1, h2 { margin-bottom: 6px; }
@@ -18,25 +18,25 @@
 </head>
 <body>
     <div class="header">
-        <h1>SIGAP Desa</h1>
-        <div class="muted">Laporan pengaduan warga untuk {{ $user->name }}</div>
+        <h1>LifeCare</h1>
+        <div class="muted">Riwayat pengaduan internet Lifemedia untuk {{ $user->name }}</div>
         <div class="muted">Dicetak pada {{ $generatedAt }}</div>
     </div>
 
     <div class="stats">
-        <div class="stat-card"><strong>{{ $stats['diajukan'] }}</strong><br>Pengaduan Diajukan</div>
+        <div class="stat-card"><strong>{{ $stats['diajukan'] }}</strong><br>Pengaduan Dikirim</div>
         <div class="stat-card"><strong>{{ $stats['diproses'] }}</strong><br>Dalam Proses</div>
         <div class="stat-card"><strong>{{ $stats['selesai'] }}</strong><br>Selesai</div>
         <div class="stat-card"><strong>{{ $stats['total'] }}</strong><br>Total Pengaduan</div>
     </div>
 
-    <h2>Daftar Pengaduan</h2>
+    <h2>Riwayat Pengaduan</h2>
     <table>
         <thead>
             <tr>
                 <th>Tanggal</th>
-                <th>Kategori</th>
-                <th>Lokasi</th>
+                <th>Jenis Gangguan</th>
+                <th>Alamat Pemasangan Wi-Fi</th>
                 <th>Status</th>
                 <th>Catatan</th>
             </tr>

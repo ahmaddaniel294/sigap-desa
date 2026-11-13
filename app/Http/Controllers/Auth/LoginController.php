@@ -26,8 +26,12 @@ class LoginController extends Controller
             $user = Auth::user();
             session()->flash('success', 'Selamat datang, ' . $user->name . '!');
 
-            return $user->isAdmin()
-                ? redirect()->route('admin.dashboard')
+            if ($user->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            }
+
+            return $user->isTechnician()
+                ? redirect()->route('teknisi.dashboard')
                 : redirect()->route('warga.dashboard');
         }
 

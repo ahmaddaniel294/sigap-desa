@@ -1,28 +1,41 @@
 @extends('layouts.app')
 
-@section('title', 'Edit Kategori — SIGAP Desa')
+  @section('title', 'Edit Layanan — LifeCare')
+  @section('body_class', 'dashboard-body')
 
-@section('content')
-<div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-lg-6">
-      <a href="{{ route('admin.kategori.index') }}" class="text-decoration-none small">&larr; Kembali ke daftar kategori</a>
+  @section('dashboard_shell')
+  <div class="dashboard-shell admin-dashboard">
+    @include('admin.partials.sidebar')
 
-      <div class="card-flat p-4 mt-3">
-        <h4 class="section-title mb-3">Edit Kategori</h4>
+    <main class="dashboard-main">
+      @include('admin.partials.topbar')
 
-        <form method="POST" action="{{ route('admin.kategori.update', $category) }}">
-          @csrf
-          @method('PUT')
-          <div class="mb-3">
-            <label class="form-label">Nama Kategori</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $category->name) }}" required>
-            @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+      <div class="dashboard-content">
+        @include('admin.partials.feedback')
+
+        <section class="panel-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Pengaturan Lifemedia</p>
+              <h1 class="h4 mb-1">Edit Jenis Gangguan</h1>
+              <p class="text-muted mb-0">Perbarui nama kategori pengaduan internet atau Wi-Fi.</p>
+            </div>
+            <a href="{{ route('admin.kategori.index') }}" class="btn btn-outline-primary">Kembali</a>
           </div>
-          <button type="submit" class="btn btn-primary">Perbarui</button>
-        </form>
+
+          <form method="POST" action="{{ route('admin.kategori.update', $category) }}" class="category-form">
+            @csrf
+            @method('PUT')
+            <div class="mb-3">
+              <label class="form-label" for="category-name">Jenis Gangguan</label>
+              <input id="category-name" type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name', $category->name) }}" required>
+              @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+          </form>
+        </section>
       </div>
-    </div>
+    </main>
   </div>
 </div>
 @endsection

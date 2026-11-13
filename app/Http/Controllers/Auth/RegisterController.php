@@ -34,7 +34,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        session()->flash('success', 'Registrasi berhasil! Selamat datang di SIGAP Desa.');
+        session()->flash('success', 'Registrasi berhasil! Selamat datang di LifeCare.');
 
         return redirect()->route('warga.dashboard');
     }

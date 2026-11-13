@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Masuk — SIGAP Desa')
+@section('title', 'Masuk — LifeCare')
+@section('body_class', 'lifecare-auth')
 
 @section('content')
 <div class="container">
   <div class="auth-shell card-flat p-4 p-md-5">
     <h3 class="section-title mb-1">Masuk</h3>
-    <p class="text-muted mb-4">Masuk untuk membuat atau memantau pengaduan Anda.</p>
+    <p class="text-muted mb-4">Masuk sebagai admin, teknisi Lifemedia, atau pelanggan untuk mengelola dan memantau tiket gangguan internet.</p>
     <form method="POST" action="{{ route('login') }}">
       @csrf
       <div class="mb-3">
@@ -21,12 +22,12 @@
       <button class="btn btn-primary w-100" type="submit">Masuk</button>
     </form>
     <p class="text-muted small mt-4 mb-0">
-      Belum punya akun? <a href="{{ route('register') }}">Daftar sebagai warga</a>
+      Belum punya akun? <a href="{{ route('register') }}">Daftar sebagai pelanggan</a>
     </p>
     <hr>
     <p class="text-muted small mb-0">
-      Demo admin: <code>admin@desa.id</code> / <code>admin123</code><br>
-      Demo warga: <code>warga@desa.id</code> / <code>warga123</code>
+      Demo admin: <code>admin@lifemedia.test</code> / <code>admin123</code><br>
+      Demo pelanggan: <code>pelanggan@lifecare.test</code> / <code>pelanggan123</code>
     </p>
   </div>
 </div>

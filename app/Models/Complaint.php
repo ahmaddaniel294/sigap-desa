@@ -20,29 +20,34 @@ class Complaint extends Model
     ];
 
     public const CATEGORIES = [
-        'Jalan Rusak',
-        'Penerangan Jalan',
-        'Sampah & Kebersihan',
-        'Fasilitas Umum',
-        'Keamanan & Ketertiban',
-        'Air Bersih & Drainase',
-        'Administrasi Kependudukan',
+        'Gangguan Koneksi Internet',
+        'Wi-Fi Lambat',
+        'Wi-Fi Tidak Terhubung',
+        'Internet Terputus',
+        'Masalah Router / Modem',
         'Lainnya',
     ];
 
     protected $fillable = [
         'user_id',
+        'technician_id',
         'category',
         'location',
         'description',
         'photo',
         'status',
         'admin_note',
+        'technician_note',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function technician()
+    {
+        return $this->belongsTo(User::class, 'technician_id');
     }
 
     public function statusStepIndex(): int

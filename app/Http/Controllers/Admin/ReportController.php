@@ -9,6 +9,21 @@ use Illuminate\Http\Request;
 
 class ReportController extends Controller
 {
+    public function index()
+    {
+        $stats = [
+            'total' => Complaint::count(),
+            'masuk' => Complaint::where('status', Complaint::STATUS_DIAJUKAN)->count(),
+            'diproses' => Complaint::where('status', Complaint::STATUS_DIPROSES)->count(),
+            'selesai' => Complaint::where('status', Complaint::STATUS_SELESAI)->count(),
+        ];
+
+        return view('admin.reports.index', [
+            'stats' => $stats,
+            'latestComplaint' => Complaint::with('user')->latest()->first(),
+        ]);
+    }
+
     public function downloadPdf(Request $request)
     {
         $stats = [
@@ -26,6 +41,6 @@ class ReportController extends Controller
             'generatedAt' => now()->locale('id')->translatedFormat('d F Y, H:i'),
         ]);
 
-        return $pdf->download('laporan-pengaduan-sigap-desa.pdf');
+        return $pdf->download('laporan-pengaduan-lifecare.pdf');
     }
 }

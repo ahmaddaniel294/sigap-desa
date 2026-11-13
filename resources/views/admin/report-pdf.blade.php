@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Laporan Pengaduan SIGAP Desa</title>
+    <title>Laporan Pengaduan LifeCare</title>
     <style>
         body { font-family: DejaVu Sans, sans-serif; color: #17212d; font-size: 12px; }
         h1, h2 { margin-bottom: 6px; }
@@ -17,8 +17,8 @@
 </head>
 <body>
     <div class="header">
-        <h1>SIGAP Desa</h1>
-        <div class="muted">Laporan pengaduan masyarakat desa</div>
+        <h1>LifeCare</h1>
+        <div class="muted">Laporan pengaduan internet dan Wi-Fi Lifemedia</div>
         <div class="muted">Dicetak pada {{ $generatedAt }}</div>
     </div>
 
@@ -34,9 +34,9 @@
         <thead>
             <tr>
                 <th>Tanggal</th>
-                <th>Pelapor</th>
-                <th>Kategori</th>
-                <th>Lokasi</th>
+                <th>Pelanggan</th>
+                <th>Jenis Gangguan</th>
+                <th>Alamat Pemasangan</th>
                 <th>Status</th>
             </tr>
         </thead>

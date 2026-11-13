@@ -15,7 +15,43 @@ class ComplaintController extends Controller
     {
         $complaints = Auth::user()->complaints()->latest()->get();
 
-        return view('warga.dashboard', compact('complaints'));
+        return view('pelanggan.dashboard', compact('complaints'));
+    }
+
+    public function activities()
+    {
+        $complaints = Auth::user()->complaints()->latest()->paginate(12);
+
+        return view('pelanggan.activities', compact('complaints'));
+    }
+
+    public function progress()
+    {
+        $complaints = Auth::user()->complaints()->with('technician')->latest()->get();
+
+        return view('pelanggan.progress', [
+            'complaints' => $complaints,
+            'stats' => [
+                'diajukan' => $complaints->where('status', Complaint::STATUS_DIAJUKAN)->count(),
+                'diproses' => $complaints->where('status', Complaint::STATUS_DIPROSES)->count(),
+                'selesai' => $complaints->where('status', Complaint::STATUS_SELESAI)->count(),
+            ],
+        ]);
+    }
+
+    public function report()
+    {
+        $complaints = Auth::user()->complaints()->latest()->get();
+
+        return view('pelanggan.reports', [
+            'complaints' => $complaints,
+            'stats' => [
+                'total' => $complaints->count(),
+                'diajukan' => $complaints->where('status', Complaint::STATUS_DIAJUKAN)->count(),
+                'diproses' => $complaints->where('status', Complaint::STATUS_DIPROSES)->count(),
+                'selesai' => $complaints->where('status', Complaint::STATUS_SELESAI)->count(),
+            ],
+        ]);
     }
 
     public function downloadPdf()
@@ -30,14 +66,14 @@ class ComplaintController extends Controller
             'selesai' => $complaints->where('status', Complaint::STATUS_SELESAI)->count(),
         ];
 
-        $pdf = Pdf::loadView('warga.report-pdf', [
+        $pdf = Pdf::loadView('pelanggan.report-pdf', [
             'user' => $user,
             'stats' => $stats,
             'complaints' => $complaints,
             'generatedAt' => now()->locale('id')->translatedFormat('d F Y, H:i'),
         ]);
 
-        return $pdf->download('laporan-pengaduan-warga-sigap-desa.pdf');
+        return $pdf->download('laporan-pengaduan-pelanggan-lifecare.pdf');
     }
 
     public function create()
@@ -48,7 +84,7 @@ class ComplaintController extends Controller
             $categories = Complaint::CATEGORIES;
         }
 
-        return view('warga.create', ['categories' => $categories]);
+        return view('pelanggan.create', ['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -79,7 +115,7 @@ class ComplaintController extends Controller
             'status' => Complaint::STATUS_DIAJUKAN,
         ]);
 
-        session()->flash('success', 'Pengaduan berhasil dikirim dan akan segera diverifikasi admin desa.');
+        session()->flash('success', 'Pengaduan berhasil dikirim dan akan segera ditinjau tim Lifemedia.');
 
         return redirect()->route('warga.dashboard');
     }
@@ -91,6 +127,6 @@ class ComplaintController extends Controller
             403
         );
 
-        return view('warga.show', ['c' => $complaint]);
+        return view('pelanggan.show', ['c' => $complaint]);
     }
 }
